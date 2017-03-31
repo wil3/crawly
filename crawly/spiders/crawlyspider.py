@@ -1,5 +1,6 @@
 from scrapy.spiders import Spider
 from scrapy.http    import Request
+from scrapy import stats
 from crawly.items   import CrawlyItem
 from urlparse import urljoin
 
@@ -29,3 +30,7 @@ class MySpider(Spider):
             item = CrawlyItem()
             item["title"] = title
             yield item
+
+    def closed(self, reason):
+        print "Here are the stats"
+        print stats.get_stats()
