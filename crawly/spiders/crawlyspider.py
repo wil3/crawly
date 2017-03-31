@@ -1,6 +1,5 @@
 from scrapy.spiders import Spider
 from scrapy.http    import Request
-from scrapy import stats
 from crawly.items   import CrawlyItem
 from urlparse import urljoin
 
@@ -32,5 +31,11 @@ class MySpider(Spider):
             yield item
 
     def closed(self, reason):
-        print "Here are the stats"
-        print stats.get_stats()
+        stats = self.crawler.stats.get_stats()
+        n = stats["downloader/response_count"]
+        lapsetime = stats["finish_time"] - stats["start_time"]
+        s = lapsetime.total_seconds()
+        rate = (n*1.0)/(s*1.0)
+        print "Crawl rate is {} req/s".format(rate)
+        with open("rate.out", "a") as f:
+            f.write("{}\n".format(rate))
