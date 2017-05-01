@@ -14,13 +14,14 @@ if __name__ == "__main__":
     parser.add_argument("file",  help="")
 
     args = parser.parse_args()
+    offset = 2.0 # for honey file and root
     rate = []
     damage = []
     with open(args.file, 'r') as f:
         for line in f.readlines():
             r, d = line.split(",")
             rate.append(float(r))
-            damage.append(float(d))
+            damage.append(float(d)-offset)
 
 
     m1, c1 = mean_confidence(damage)
