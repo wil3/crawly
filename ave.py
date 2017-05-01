@@ -14,10 +14,22 @@ if __name__ == "__main__":
     parser.add_argument("file",  help="")
 
     args = parser.parse_args()
+    rate = []
+    damage = []
     with open(args.file, 'r') as f:
-        data = [float(line) for line in f.readlines()]
+        for line in f.readlines():
+            r, d = line.split(",")
+            rate.append(float(r))
+            damage.append(float(d))
 
-    m, c = mean_confidence(data)
-    print "Mean ", m
-    print "+-", c
+
+    m1, c1 = mean_confidence(damage)
+    print "Damage Mean ", m1
+    print "Damage +-", c1
+
+
+    m, c = mean_confidence(rate)
+
+    print "Rate Mean ", m
+    print "Rate +-", c
 
