@@ -21,8 +21,9 @@ NEWSPIDER_MODULE = 'crawly.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False 
 
+CONCURRENT = 1
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = CONCURRENT
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
@@ -30,7 +31,7 @@ CONCURRENT_REQUESTS = 16
 #DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
-CONCURRENT_REQUESTS_PER_IP = 16
+CONCURRENT_REQUESTS_PER_IP = CONCURRENT
 
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False

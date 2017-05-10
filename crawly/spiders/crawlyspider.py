@@ -37,7 +37,9 @@ class MySpider(Spider):
         s = lapsetime.total_seconds()
         rate = (n*1.0)/(s*1.0)
         print "Crawl rate is {} req/s".format(rate)
-
-        _200 = stats["downloader/response_status_count/200"]
+        key = "downloader/response_status_count/200"
+        _200 = 0
+        if key in stats:
+            _200 = stats[key]
         with open("rate.out", "a") as f:
             f.write("{},{}\n".format(rate, _200))
